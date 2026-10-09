@@ -1,47 +1,29 @@
-﻿# Project Governance — Simple Stock Flow
+# 00-governance — Team Rules
 
-This document defines the governing standards for development, version control, naming conventions, and contribution workflows within the repository.
-
----
-
-## 1. Version Control & Branching Strategy
-
-The repository follows **Trunk-Based Development**:
-* **Primary Branch**: `main` represents the stable, production-ready baseline.
-* **Feature Branches**: Work must be conducted in short-lived topic branches (e.g., `feature/T-02-initial-schema`, `fix/T-10-stock-check`) and merged via Pull Requests.
-* **Direct Commits**: Restricted to `main` except for initial repository setup and documentation hotfixes.
+> This section defines the agreements the team commits to follow throughout the project.
+> Every team member must read all documents in this section before making their first commit.
 
 ---
 
-## 2. Commit Message Standards
+## Documents in this section
 
-Commits must strictly comply with **Conventional Commits**:
-
-| Type | Description | Example |
-|---|---|---|
-| `feat:` | Adding a new domain capability, aggregate, or endpoint | `feat: implement product soft delete filter` |
-| `fix:` | Correcting a bug, constraint failure, or invariant | `fix: enforce non-negative check on product stock` |
-| `docs:` | Creating or updating documentation or ADRs | `docs: populate governance guidelines in 00-governance` |
-| `chore:` | Maintenance tasks, EF Core migrations, or Docker updates | `chore: generate EF Core initial schema migration` |
-
----
-
-## 3. Naming Conventions
-
-Standardization across domain code, persistence mappings, and database artifacts:
-
-| Element | Convention | Scope | Example |
-|---|---|---|---|
-| Domain Entity | `PascalCase`, English, Singular, ASCII | C# Code | `SaleItem` |
-| Database Table | `snake_case`, English, Singular, ASCII | PostgreSQL Schema (`sales`) | `sale_item` |
-| Database Attribute | `snake_case`, English, Singular, ASCII | PostgreSQL Columns | `unit_price` |
-| List Attribute | **Never plural** | PostgreSQL Columns | `sale_item` |
-| Domain Collections | `PascalCase`, English, Plural | C# In-Memory Sets | `DbSet<Product> Products` |
+| File | Purpose |
+|------|---------|
+| [git-conventions.md](./git-conventions.md) | Branch strategy, commit format, PR policy, merge rules |
+| [agile-conventions.md](./agile-conventions.md) | Sprint structure, ceremonies, estimation, backlog tool |
+| [definition-of-done.md](./definition-of-done.md) | Checklist that every completed user story must satisfy |
+| [definition-of-ready.md](./definition-of-ready.md) | Checklist for a user story to enter a sprint |
+| [documentation-rules.md](./documentation-rules.md) | How to write, update, and delete documentation |
+| [microservices-documentation.md](./microservices-documentation.md) | Required documents per microservice |
+| [security-policy.md](./security-policy.md) | How the team handles vulnerabilities and security incidents |
+| [security-rules.md](./security-rules.md) | Code-level security rules: secrets, auth, input validation |
 
 ---
 
-## 4. Engineering Standards
+## How governance applies
 
-* **Language**: All code, persistence configuration, API documentation, and commit messages must be written strictly in **English**.
-* **Encoding**: All files must be saved using **UTF-8** encoding.
-* **Single Source of Truth**: Schema definitions and invariants declared in `spec/data-model.md` are non-negotiable.
+Governance rules apply to **the entire project** — all sections, all services, all team members.
+If a rule conflicts with a local convention, governance wins unless a new ADR overrides it.
+
+> Change a governance rule only through team agreement.
+> Document the change and the reason. Announce it before the next sprint.
